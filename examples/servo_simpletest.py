@@ -1,14 +1,14 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-FileCopyrightText: Copyright (c) 2023 Jose D. Montoya
 #
 # SPDX-License-Identifier: MIT
 
-import time
 from machine import Pin, PWM
-from micropython_motor import Servo
+import time
+from micropython_motor.servo import Servo
 
 servo = PWM(Pin(10, Pin.OUT))
 servo.freq(50)
-servo.duty_u16(0)
 
 servo7 = Servo(servo)
 
@@ -25,3 +25,5 @@ while fraction < 1.0:
     servo7.fraction = fraction
     fraction += 0.01
     time.sleep(0.06)
+
+
