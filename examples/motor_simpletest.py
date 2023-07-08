@@ -8,9 +8,8 @@ https://github.com/WoolseyWorkshop/Article-Driving-A-DC-Motor-With-CircuitPython
 """
 
 from time import sleep
-from micropython_motor import MOTOR
 from machine import PWM, Pin
-
+from micropython_motor import MOTOR
 
 OP_DURATION = 2  # The operation duration in seconds
 

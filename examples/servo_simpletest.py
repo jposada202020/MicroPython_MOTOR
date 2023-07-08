@@ -1,8 +1,9 @@
 # SPDX-FileCopyrightText: Copyright (c) 2023 Jose D. Montoya
 #
 # SPDX-License-Identifier: MIT
-from machine import Pin, PWM
+
 import time
+from machine import Pin, PWM
 from micropython_motor import Servo
 
 servo = PWM(Pin(10, Pin.OUT))
@@ -24,4 +25,3 @@ while fraction < 1.0:
     servo7.fraction = fraction
     fraction += 0.01
     time.sleep(0.06)
-

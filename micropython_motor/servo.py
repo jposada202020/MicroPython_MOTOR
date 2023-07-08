@@ -22,9 +22,7 @@ class _BaseServo:
     :param int min_pulse: The minimum pulse length of the servo in microseconds.
     :param int max_pulse: The maximum pulse length of the servo in microseconds."""
 
-    def __init__(
-        self, pwm_out, *, min_pulse: int = 500, max_pulse: int = 2250
-    ) -> None:
+    def __init__(self, pwm_out, *, min_pulse: int = 500, max_pulse: int = 2250) -> None:
         self._pwm_out = pwm_out
         self.set_pulse_width_range(min_pulse, max_pulse)
 
