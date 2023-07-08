@@ -1,0 +1,7 @@
+{
+  "urls": [
+    ["micropython_motor/examples/servo_simpletest.py", "github:jposada202020/MicroPython_MOTOR/examples/servo_simpletest.py"],
+    ["micropython_motor/examples/motor_simpletest.py", "github:jposada202020/MicroPython_MOTOR/examples/motor_simpletest.py"]
+  ],
+  "version": "0.1"
+}
