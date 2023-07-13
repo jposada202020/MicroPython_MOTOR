@@ -22,7 +22,6 @@ keywords = [
     "sensor",
     "micropython",
     "motor",
-    "micropython",
     "pwm",
     "motor",
     "servo",
