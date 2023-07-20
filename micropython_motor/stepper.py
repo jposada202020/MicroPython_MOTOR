@@ -18,16 +18,16 @@ from micropython import const
 
 
 # Constants that specify the direction and style of steps.
-_FORWARD = const(1)  # Step forward
-_BACKWARD = const(2)  # Step backward
-_SINGLE = const(1)  # Step so that each step only activates a single coil
+FORWARD = const(1)  # Step forward
+BACKWARD = const(2)  # Step backward
+SINGLE = const(1)  # Step so that each step only activates a single coil
 # Step so that each step only activates two coils to produce more torque
-_DOUBLE = const(2)
+DOUBLE = const(2)
 # Step half a step to alternate between single coil and double coil steps
-_INTERLEAVE = const(3)
+INTERLEAVE = const(3)
 # Step a fraction of a step by partially activating two neighboring coils
 # Step size is determined by ``microsteps`` constructor argument.
-_MICROSTEP = const(4)
+MICROSTEP = const(4)
 
 _SINGLE_STEPS = bytes([0b0010, 0b0100, 0b0001, 0b1000])
 _DOUBLE_STEPS = bytes([0b1010, 0b0110, 0b0101, 0b1001])
@@ -124,35 +124,35 @@ class StepperMotor:
             else:
                 coil.duty_u16(0)
 
-    def onestep(self, *, direction: int = _FORWARD, style: int = _SINGLE) -> None:
+    def onestep(self, *, direction: int = FORWARD, style: int = SINGLE) -> None:
         """Performs one step of a particular style. The actual rotation amount will vary by style.
-        :const:`_SINGLE` and :const:`DOUBLE` will normal cause a full step rotation.
-        :const:`_INTERLEAVE` will normally do a half step rotation. :const:`_MICROSTEP`
+        ``SINGLE`` and ``DOUBLE`` will normal cause a full step rotation.
+        ``INTERLEAVE`` will normally do a half step rotation. ``MICROSTEP``
         will perform the smallest configured step.
 
-        When step styles are mixed, subsequent :const:`_SINGLE`, :const:`_DOUBLE` or
-        :const:`_INTERLEAVE` steps may be less than normal in order to align to the
+        When step styles are mixed, subsequent ``SINGLE``, ``DOUBLE`` or
+        ``INTERLEAVE`` steps may be less than normal in order to align to the
         desired style's pattern.
 
-        :param int direction: Either :const:`_FORWARD` or :const:`_BACKWARD`
-        :param int style: :const:`_SINGLE`, :const:`_DOUBLE`, :const:`_INTERLEAVE`
+        :param int direction: Either ``FORWARD`` or ``BACKWARD``
+        :param int style: ``SINGLE``, ``DOUBLE``, ``INTERLEAVE``
 
         """
         if self._microsteps is None:
             # Digital IO Pins
             step_size = 1
-            if style == _SINGLE:
+            if style == SINGLE:
                 self._steps = _SINGLE_STEPS
-            elif style == _DOUBLE:
+            elif style == DOUBLE:
                 self._steps = _DOUBLE_STEPS
-            elif style == _INTERLEAVE:
+            elif style == INTERLEAVE:
                 self._steps = _INTERLEAVE_STEPS
             else:
                 raise ValueError("Unsupported step style.")
         else:
             # PWM Pins Adjust current steps based on the direction and type of step.
             step_size = 0
-            if style == _MICROSTEP:
+            if style == MICROSTEP:
                 step_size = 1
             else:
                 half_step = self._microsteps // 2
@@ -163,28 +163,28 @@ class StepperMotor:
                 if additional_microsteps != 0:
                     # We set _current_microstep directly because our step size varies
                     # depending on the direction.
-                    if direction == _FORWARD:
+                    if direction == FORWARD:
                         self._current_microstep += half_step - additional_microsteps
                     else:
                         self._current_microstep -= additional_microsteps
                     step_size = 0
-                elif style == _INTERLEAVE:
+                elif style == INTERLEAVE:
                     step_size = half_step
 
                 current_interleave = self._current_microstep // half_step
-                if (style == _SINGLE and current_interleave % 2 == 1) or (
-                    style == _DOUBLE and current_interleave % 2 == 0
+                if (style == SINGLE and current_interleave % 2 == 1) or (
+                    style == DOUBLE and current_interleave % 2 == 0
                 ):
                     step_size = half_step
-                elif style in (_SINGLE, _DOUBLE):
+                elif style in (SINGLE, DOUBLE):
                     step_size = full_step
 
-        if direction == _FORWARD:
+        if direction == FORWARD:
             self._current_microstep += step_size
         else:
             self._current_microstep -= step_size
 
         # Now that we know our target microstep we can determine how to energize the four coils.
-        self._update_coils(microstepping=style == _MICROSTEP)
+        self._update_coils(microstepping=style == MICROSTEP)
 
         return self._current_microstep
