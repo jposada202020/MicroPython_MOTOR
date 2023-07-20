@@ -32,9 +32,6 @@ This library can work with other MCU (Not tested) that used the following PWM me
 * freq
 * duty_u16
 
-Sadly do not have the hardware to test the step motor part of the library so, this will
-be an exercise for the reader.:)
-
 
 Installing with mip
 ====================

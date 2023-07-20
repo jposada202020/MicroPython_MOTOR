@@ -11,6 +11,10 @@
     [
       "micropython_motor/servo.py",
       "github:jposada202020/MicroPython_MOTOR/micropython_motor/servo.py"
+    ],
+    [
+      "micropython_motor/stepper.py",
+      "github:jposada202020/MicroPython_MOTOR/micropython_motor/stepper.py"
     ]
   ],
   "version": "1"

@@ -26,6 +26,7 @@ keywords = [
     "motor",
     "servo",
     "drv8833",
+    "stepper",
 ]
 license = {text = "MIT"}
 classifiers = [

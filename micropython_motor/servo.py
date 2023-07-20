@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: MIT
 """
-`motor`
+`servo`
 ================================================================================
 
 MicroPython Helper for controlling PWM based servos

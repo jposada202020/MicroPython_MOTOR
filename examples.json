@@ -7,6 +7,10 @@
     [
       "micropython_motor/examples/motor_simpletest.py",
       "github:jposada202020/MicroPython_MOTOR/examples/motor_simpletest.py"
+    ],
+    [
+      "micropython_motor/examples/stepper_simpletest.py",
+      "github:jposada202020/MicroPython_MOTOR/examples/stepper_simpletest.py"
     ]
   ],
   "version": "1"
