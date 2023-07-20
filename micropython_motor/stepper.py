@@ -18,24 +18,19 @@ from micropython import const
 
 
 # Constants that specify the direction and style of steps.
-FORWARD = const(1)
-"""Step forward"""
-BACKWARD = const(2)
-""""Step backward"""
-SINGLE = const(1)
-"""Step so that each step only activates a single coil"""
+FORWARD = const(1)  # Step forward
+BACKWARD = const(2)  # Step backward
+SINGLE = const(1)  # Step so that each step only activates a single coil
+# Step so that each step only activates two coils to produce more torque
 DOUBLE = const(2)
-"""Step so that each step only activates two coils to produce more torque."""
+# Step half a step to alternate between single coil and double coil steps
 INTERLEAVE = const(3)
-"""Step half a step to alternate between single coil and double coil steps."""
+# Step a fraction of a step by partially activating two neighboring coils
+# Step size is determined by ``microsteps`` constructor argument.
 MICROSTEP = const(4)
-"""Step a fraction of a step by partially activating two neighboring coils. Step size is determined
-   by ``microsteps`` constructor argument."""
 
 _SINGLE_STEPS = bytes([0b0010, 0b0100, 0b0001, 0b1000])
-
 _DOUBLE_STEPS = bytes([0b1010, 0b0110, 0b0101, 0b1001])
-
 _INTERLEAVE_STEPS = bytes(
     [0b1010, 0b0010, 0b0110, 0b0100, 0b0101, 0b0001, 0b1001, 0b1000]
 )
@@ -131,14 +126,18 @@ class StepperMotor:
 
     def onestep(self, *, direction: int = FORWARD, style: int = SINGLE) -> None:
         """Performs one step of a particular style. The actual rotation amount will vary by style.
-        `SINGLE` and `DOUBLE` will normal cause a full step rotation. `INTERLEAVE` will normally
-        do a half step rotation. `MICROSTEP` will perform the smallest configured step.
+        :const:`SINGLE` and :const:`DOUBLE` will normal cause a full step rotation.
+        :const:`INTERLEAVE` will normally do a half step rotation. :const:`MICROSTEP`
+        will perform the smallest configured step.
 
-        When step styles are mixed, subsequent `SINGLE`, `DOUBLE` or `INTERLEAVE` steps may be
-        less than normal in order to align to the desired style's pattern.
+        When step styles are mixed, subsequent :const:`SINGLE`, :const:`DOUBLE` or
+        :const:`INTERLEAVE` steps may be less than normal in order to align to the
+        desired style's pattern.
 
-        :param int direction: Either `FORWARD` or `BACKWARD`
-        :param int style: `SINGLE`, `DOUBLE`, `INTERLEAVE`"""
+        :param int direction: Either :const:`FORWARD` or :const:`BACKWARD`
+        :param int style: :const:`SINGLE`, :const:`DOUBLE`, :const:`INTERLEAVE`
+
+        """
         if self._microsteps is None:
             # Digital IO Pins
             step_size = 1

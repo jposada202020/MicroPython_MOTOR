@@ -3,7 +3,8 @@
 #
 # SPDX-License-Identifier: MIT
 
-"""Example adapted from https://learn.adafruit.com/use-dc-stepper-servo-motor-solenoid-rp2040-pico/stepper-motor"""
+"""Example adapted from
+https://learn.adafruit.com/use-dc-stepper-servo-motor-solenoid-rp2040-pico/stepper-motor"""
 
 # Hardware setup:
 #   Stepper motor via DRV8833 driver breakout on GP21, GP20, GP19, GP18
@@ -11,7 +12,7 @@
 #   DRV8833 Enabled on GP16
 
 import time
-from machine import PWM, Pin
+from machine import Pin
 from micropython_motor import stepper
 
 print("Stepper test")
@@ -51,9 +52,9 @@ def stepper_back():
 
 
 def run_test(testnum):
-    if testnum is 0:
+    if testnum == 0:
         stepper_fwd()
-    elif testnum is 1:
+    elif testnum == 1:
         stepper_back()
 
 
