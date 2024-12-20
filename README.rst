@@ -1,27 +1,11 @@
-Introduction
-============
+⛔️ DEPRECATED
+===============
 
+This repository is no longer supported, please consider using alternatives.
 
-.. image:: https://readthedocs.org/projects/micropython-motor/badge/?version=latest
-    :target: https://micropython-motor.readthedocs.io/en/latest/
-    :alt: Documentation Status
-
-
-.. image:: https://img.shields.io/badge/micropython-Ok-purple.svg
-    :target: https://micropython.org
-    :alt: micropython
-
-.. image:: https://img.shields.io/pypi/v/micropython-motor.svg
-    :alt: latest version on PyPI
-    :target: https://pypi.python.org/pypi/micropython-motor
-
-.. image:: https://static.pepy.tech/personalized-badge/micropython-motor?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Pypi%20Downloads
-    :alt: Total PyPI downloads
-    :target: https://pepy.tech/project/micropython-motor
-
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/psf/black
-    :alt: Code Style: Black
+.. image:: http://unmaintained.tech/badge.svg
+  :target: http://unmaintained.tech
+  :alt: No Maintenance Intended
 
 MicroPython Helpers for controlling PWM based motors and servos This has been adapted to use in the
 Raspberry Pi Pico from the excellent Adafruit_CircuitPython_Motor Library here:
